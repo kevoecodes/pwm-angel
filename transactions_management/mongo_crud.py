@@ -107,8 +107,14 @@ class MongoTransactionsManager(MongoDB):
             feed = []
 
             for tran in trans:
+                if tran['type'] == 'Purchase':
+                    token = self.tokens_coll.find_one({'transaction_id': str(tran['_id'])})
+                    if token is not None:
+                        tran['token'] = str(token['_id'])
+                    else:
+                        tran['token'] = 'None'
                 feed.append(tran)
-
+            print(feed)
             return feed
 
         return []

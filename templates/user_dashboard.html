@@ -262,7 +262,15 @@
                                                                         <tr>
                                                                             <td>{{ tran.at }}</td>
                                                                             <td>TZS {{ tran.amount }}</td>
-                                                                            <td>{{ tran.type }}</td>
+                                                                            <td>
+                                                                                {% if tran.token != 'None' %}
+                                                                                    <a href="/token/{{ tran.token }}">
+                                                                                        {{ tran.type }}
+                                                                                    </a>
+                                                                                {% else %}
+                                                                                    {{ tran.type }}
+                                                                                {% endif %}
+                                                                            </td>
                                                                         </tr>
                                                                         {% endfor %}
                                                                     </tbody>

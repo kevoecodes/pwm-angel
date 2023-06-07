@@ -27,7 +27,7 @@
                             <div class="breadcrumb-main">
                                 <h4 class="text-capitalize breadcrumb-title">Profile</h4>
                                 <div class="breadcrumb-action justify-content-center flex-wrap">
-                                    
+
                                         {% if account.active == True %}
                                         <form action="/user-profile/{{ id }}" method="POST">
                                                 {% csrf_token %}
@@ -41,10 +41,10 @@
                                                     <button type="submit" class="btn btn-sm btn-primary btn-add">
                                                         Block </button>
                                                 </div>
-                                            
+
                                         </form>
                                         {% endif %}
-                                        
+
                                         {% if account.active == False %}
                                         <form action="/user-profile/{{ id }}" method="POST">
                                             {% csrf_token %}
@@ -60,7 +60,7 @@
                                             </div>
                                         </form>
                                         {% endif %}
-                                    
+
                                 </div>
                             </div>
 
@@ -113,7 +113,7 @@
 
                                 <!-- Profile User Bio -->
                                 <div class="card mb-25">
-                                    
+
                                     <div class="user-info border-bottom">
                                         <div class="card-header border-bottom-0 pt-sm-25 pb-sm-0  px-md-25 px-3">
                                             <div class="profile-header-title">
@@ -203,7 +203,7 @@
                                                                     <span data-feather="credit-card"></span><Datag>Depoosit</Datag>
                                                            </a>
 
-                                                            
+
                                                         </div>
 
                                                     </div>
@@ -235,7 +235,7 @@
                                                         <div class="overview-content">
                                                             <h1>{{ account.consumed_litres }} Liters</h1>
                                                             <p>Units Consumed</p>
-                                                            
+
                                                         </div>
 
                                                     </div>
@@ -255,12 +255,12 @@
                                                 </div>
                                                 <!-- Card 2 End  -->
                                             </div>
-                                    
-                                            
+
+
                                         </div>
                                     </div>
                                 </div>
-                               
+
                                 <div class="tab-pane fade" id="activity" role="tabpanel" aria-labelledby="activity-tab">
                                     <div class="ap-post-content">
                                         <div class="row">
@@ -296,7 +296,15 @@
                                                                         {% for tran in trans %}
                                                                         <tr>
                                                                             <td>{{ tran.at }}</td>
-                                                                            <td>{{ tran.type }}</td>
+                                                                            <td>
+                                                                                {% if tran.token != 'None' %}
+                                                                                    <a href="/token/{{ tran.token }}">
+                                                                                        {{ tran.type }}
+                                                                                    </a>
+                                                                                {% else %}
+                                                                                    {{ tran.type }}
+                                                                                {% endif %}
+                                                                            </td>
                                                                             <td>TZS {{ tran.amount }}</td>
                                                                         </tr>
                                                                         {% endfor %}
@@ -308,7 +316,7 @@
                                                 </div>
                                                 <!-- Friend Post End -->
                                             </div>
-                                           
+
                                         </div>
                                     </div>
                                 </div>
