@@ -1,0 +1,391 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en" dir="ltr">
+
+
+<!-- Mirrored from demo.jsnorm.com/html/strikingdash/strikingdash/ltr/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 04 Mar 2022 08:36:29 GMT -->
+{% include 'head.html' %}
+
+<body class="layout-light side-menu overlayScroll">
+    <div class="mobile-search"></div>
+
+    <div class="mobile-author-actions"></div>
+        {% include 'header.html' %}
+    <main class="main-content">
+
+        {% include 'sidebar.html' %}
+        <div class="contents">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <div class="breadcrumb-main">
+                            <h4 class="text-capitalize breadcrumb-title">Dashboard</h4>
+                            <div class="breadcrumb-action justify-content-center flex-wrap">
+
+                            
+                                
+                                <div class="action-btn">
+                                TZS {{cost}} - @ 1 Litre
+                                </div>
+                                <div class="action-btn">
+                                    <a href="change-price" type="submit" class="btn btn-sm btn-primary btn-add">
+                                        Change 
+                                    </a>
+                                </div>  
+                            </div>
+                
+                        </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-xxl-6 col-12">
+                        <div class="row">
+                            <div class="col-md-6 mb-25">
+                                <div class="forcast-cardbox">
+                                    <h6 class="forcast-title">Users</h6>
+                                    <div class="forcast-details">
+                                        <h1 class="forcast-value">{{ totalUsers }}</h1>
+                                        <p class="forcast-status">
+                                            <span class="percentage color-success">
+                                                <span data-feather="arrow-up"></span>
+                                            <span>25%</span>
+                                            </span>
+                                            <span class="forcast-text">Since last month</span>
+                                        </p>
+                                    </div>
+                                    <div class="forcast__chart">
+                                        <div class="parentContainer">
+
+
+                                            <div>
+                                                <canvas id="lineChartforcastOne"></canvas>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ends: .forcast-cardbox -->
+                            </div>
+                            <div class="col-md-6 mb-25">
+                                <div class="forcast-cardbox">
+                                    <h6 class="forcast-title">Water Supply Trending</h6>
+                                    <div class="forcast-details">
+                                        <h1 class="forcast-value">{{consumedLitres}} liters</h1>
+                                        <p class="forcast-status">
+                                            <span class="percentage color-danger">
+                                                <span data-feather="arrow-up"></span>
+                                            <span>8%</span>
+                                            </span>
+                                            <span class="forcast-text">Since last month</span>
+                                        </p>
+                                    </div>
+                                    <div class="forcast__chart">
+                                        <div class="parentContainer">
+
+
+                                            <div>
+                                                <canvas id="lineChartforcastTwo"></canvas>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ends: .forcast-cardbox -->
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-12 mb-25">
+
+                        <div class="card broder-0">
+                            <div class="card-header">
+                                <h6>Income And Expenses <!-- <span>Nov 23, 2019 - Nov 29, 2019</span> --></h6>
+                                <div class="card-extra">
+                                    <ul class="card-tab-links mr-3 nav-tabs nav" role="tablist">
+                                        <li>
+                                            <a  href="#" data-toggle="tab" id="incExp-week-tab" role="tab" aria-selected="true">Week</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-toggle="tab" id="incExp-month-tab" role="tab" aria-selected="true">Month</a>
+                                        </li>
+                                        <li>
+                                            <a href="#incExp-year"  class="active" data-toggle="tab" id="incExp-year-tab" role="tab" aria-selected="true">Year</a>
+                                        </li>
+                                    </ul>
+                                    <div class="dropdown dropleft">
+                                        <a href="#" role="button" id="income" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span data-feather="more-horizontal"></span>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="income">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ends: .card-header -->
+                            <div class="card-body pt-0 pb-0">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade active show" id="incExp-year" role="tabpanel" aria-labelledby="incExp-year-tab">
+                                        <div class="inEx-wrap d-flex">
+                                            <div class="inEx-box">
+                                                <div class="inEx__single">
+                                                    <span class="inEx-subtitle">Total income</span>
+                                                    <div class="inEx__info d-flex align-items-end">
+                                                        <h3 class="inEx__title">TZS {{totalIncome}}</h3>
+                                                        <span class="inEx-tail color-light">
+
+                                                            <span class="inEx__percentage color-success">
+                                                                <span data-feather="arrow-up"></span>37%</span>
+                                                        Since last month
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <!-- ends: .inEx__single -->
+                                                <div class="inEx__single">
+                                                    <span class="inEx-subtitle">Total expenses</span>
+                                                    <div class="inEx__info d-flex align-items-end">
+                                                        <h3 class="inEx__title">TZS 0</h3>
+                                                        <span class="inEx-tail color-light">
+                                                            <span class="inEx__percentage color-danger">
+                                                                <span data-feather="arrow-down"></span>25%</span>
+                                                        Since last month
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="inEx__single">
+                                                    <span class="inEx-subtitle">Net profit</span>
+                                                    <div class="inEx__info d-flex align-items-end">
+                                                        <h3 class="inEx__title">TZS {{totalIncome}}</h3>
+                                                        <span class="inEx-tail color-light">
+
+                                                            <span class="inEx__percentage color-success">
+                                                                <span data-feather="arrow-up"></span>17%</span>
+                                                        Since last month
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <!-- ends: .inEx__single -->
+                                            </div>
+                                            <div class="inEx-chart">
+                                                <div class="parentContainer">
+
+
+                                                    <div>
+                                                        <canvas id="barChartInEx"></canvas>
+                                                    </div>
+
+
+                                                </div>
+                                                <ul class="legend-static">
+                                                    <li style="display: inline-flex; align-items: center;">
+                                                        <span style="background-color: rgb(95, 99, 242);"></span>Total Income
+                                                    </li>
+                                                    <!-- li style="display: inline-flex; align-items: center;">
+                                                        <span style="background-color: rgb(255, 105, 165);"></span>Cost of goods sold
+                                                    </li> -->
+                                                    <li style="display: inline-flex; align-items: center;">
+                                                        <span style="background-color: rgb(250, 139, 12);"></span>Total expenses
+                                                    </li>
+                                                    <li style="display: inline-flex; align-items: center;">
+                                                        <span style="background-color: rgb(32, 201, 151);"></span>Net profit
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="incExp-month" role="tabpanel" aria-labelledby="incExp-month-tab">
+                                        <div class="inEx-wrap d-flex">
+                                            <div class="inEx-box">
+                                                <div class="inEx__single">
+                                                    <span class="inEx-subtitle">Total income</span>
+                                                    <div class="inEx__info d-flex align-items-end">
+                                                        <h3 class="inEx__title">$74,820</h3>
+                                                        <span class="inEx-tail color-light">
+
+                                                            <span class="inEx__percentage color-success">
+                                                                <span data-feather="arrow-up"></span>37%</span>
+                                                        Since last month
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <!-- ends: .inEx__single -->
+                                                <div class="inEx__single">
+                                                    <span class="inEx-subtitle">Total expenses</span>
+                                                    <div class="inEx__info d-flex align-items-end">
+                                                        <h3 class="inEx__title">$74,820</h3>
+                                                        <span class="inEx-tail color-light">
+                                                            <span class="inEx__percentage color-danger">
+                                                                <span data-feather="arrow-down"></span>25%</span>
+                                                        Since last month
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <!-- ends: .inEx__single -->
+                                                <div class="inEx__single">
+                                                    <span class="inEx-subtitle">Cost of goods sold</span>
+                                                    <div class="inEx__info d-flex align-items-end">
+                                                        <h3 class="inEx__title">$32,143</h3>
+                                                        <span class="inEx-tail color-light">
+                                                            <span class="inEx__percentage color-success">
+                                                                <span data-feather="arrow-up"></span>25%</span>
+                                                        Since last month
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <!-- ends: .inEx__single -->
+                                                <div class="inEx__single">
+                                                    <span class="inEx-subtitle">Net profit</span>
+                                                    <div class="inEx__info d-flex align-items-end">
+                                                        <h3 class="inEx__title">$52,727</h3>
+                                                        <span class="inEx-tail color-light">
+
+                                                            <span class="inEx__percentage color-success">
+                                                                <span data-feather="arrow-up"></span>17%</span>
+                                                        Since last month
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <!-- ends: .inEx__single -->
+                                            </div>
+                                            <div class="inEx-chart">
+                                                <div class="parentContainer">
+
+
+                                                    <div>
+                                                        <canvas id="barChartInEx_M"></canvas>
+                                                    </div>
+
+
+                                                </div>
+                                                <ul class="legend-static">
+                                                    <li style="display: inline-flex; align-items: center;">
+                                                        <span style="background-color: rgb(95, 99, 242);"></span>Total Income
+                                                    </li>
+                                                    <li style="display: inline-flex; align-items: center;">
+                                                        <span style="background-color: rgb(255, 105, 165);"></span>Cost of goods sold
+                                                    </li>
+                                                    <li style="display: inline-flex; align-items: center;">
+                                                        <span style="background-color: rgb(250, 139, 12);"></span>Total expenses
+                                                    </li>
+                                                    <li style="display: inline-flex; align-items: center;">
+                                                        <span style="background-color: rgb(32, 201, 151);"></span>Net profit
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="incExp-year" role="tabpanel" aria-labelledby="incExp-year-tab">
+                                        <div class="inEx-wrap d-flex">
+                                            <div class="inEx-box">
+                                                <div class="inEx__single">
+                                                    <span class="inEx-subtitle">Total income</span>
+                                                    <div class="inEx__info d-flex align-items-end">
+                                                        <h3 class="inEx__title">$274,820</h3>
+                                                        <span class="inEx-tail color-light">
+
+                                                            <span class="inEx__percentage color-success">
+                                                                <span data-feather="arrow-up"></span>37%</span>
+                                                        Since last month
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <!-- ends: .inEx__single -->
+                                                <div class="inEx__single">
+                                                    <span class="inEx-subtitle">Total expenses</span>
+                                                    <div class="inEx__info d-flex align-items-end">
+                                                        <h3 class="inEx__title">$274,820</h3>
+                                                        <span class="inEx-tail color-light">
+                                                            <span class="inEx__percentage color-danger">
+                                                                <span data-feather="arrow-down"></span>25%</span>
+                                                        Since last month
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <!-- ends: .inEx__single -->
+                                                <div class="inEx__single">
+                                                    <span class="inEx-subtitle">Cost of goods sold</span>
+                                                    <div class="inEx__info d-flex align-items-end">
+                                                        <h3 class="inEx__title">$532,143</h3>
+                                                        <span class="inEx-tail color-light">
+                                                            <span class="inEx__percentage color-success">
+                                                                <span data-feather="arrow-up"></span>25%</span>
+                                                        Since last month
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <!-- ends: .inEx__single -->
+                                                <div class="inEx__single">
+                                                    <span class="inEx-subtitle">Net profit</span>
+                                                    <div class="inEx__info d-flex align-items-end">
+                                                        <h3 class="inEx__title">$252,727</h3>
+                                                        <span class="inEx-tail color-light">
+
+                                                            <span class="inEx__percentage color-success">
+                                                                <span data-feather="arrow-up"></span>17%</span>
+                                                        Since last month
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <!-- ends: .inEx__single -->
+                                            </div>
+                                            <div class="inEx-chart">
+                                                <div class="parentContainer">
+
+
+                                                    <div>
+                                                        <canvas id="barChartInEx_W"></canvas>
+                                                    </div>
+
+
+                                                </div>
+                                                <ul class="legend-static">
+                                                    <li style="display: inline-flex; align-items: center;">
+                                                        <span style="background-color: rgb(95, 99, 242);"></span>Total Income
+                                                    </li>
+                                                    <li style="display: inline-flex; align-items: center;">
+                                                        <span style="background-color: rgb(255, 105, 165);"></span>Cost of goods sold
+                                                    </li>
+                                                    <li style="display: inline-flex; align-items: center;">
+                                                        <span style="background-color: rgb(250, 139, 12);"></span>Total expenses
+                                                    </li>
+                                                    <li style="display: inline-flex; align-items: center;">
+                                                        <span style="background-color: rgb(32, 201, 151);"></span>Net profit
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ends: .card-body -->
+                        </div>
+
+                    </div>
+                   
+                    
+                </div>
+            </div>
+
+        </div>
+        {% include 'footer.html' %}
+    </main>
+    {% include 'overlayer.html' %}
+
+    <!-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDduF2tLXicDEPDMAtC6-NLOekX0A5vlnY"></script> -->
+    <!-- inject:js-->
+    <script src="{% static 'assets/js/plugins.min.js' %}"></script>
+    <script src="{% static 'assets/js/script.min.js' %}"></script>
+    <!-- endinject-->
+</body>
+
+
+<!-- Mirrored from demo.jsnorm.com/html/strikingdash/strikingdash/ltr/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 04 Mar 2022 08:41:21 GMT -->
+
+</html>
