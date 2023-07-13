@@ -18,6 +18,24 @@ class MongoDevicesManager(MongoDB):
             return False
         return True
 
+    def deduce_token(self, data):
+        if 'token' in data and 'deviceNo' in data:
+            device = self.tokens_coll.find_one({'deviceNo': data['deviceNo'], 'token': data['token']})
+            if device is not None:
+                if 'used' in device:
+                    if device['used'] is False:
+                        self.tokens_coll.update_one({"deviceNo": data['deviceNo'], 'token': data['token']}, {"$set": {
+                            "used": True,
+                        }})
+                        return device['units']
+                    return 0.0
+
+                self.tokens_coll.update_one({"deviceNo": data['deviceNo'], 'token': data['token']}, {"$set": {
+                    "used": True,
+                }})
+                return device['units']
+        return 0.0
+
     def deviceUpdate(self, data):
         if 'deviceNo' in data:
             account = self.account_coll.find_one({"deviceNo": data['deviceNo']})
